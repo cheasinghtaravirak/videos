@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import youtube from '../api/youtube';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 
 //App is a class based component b/c it handles application's state
 class App extends React.Component {
@@ -22,13 +23,14 @@ class App extends React.Component {
     this.setState({videos: response.data.items});
   }
   onVideoSelect = video => {
-    console.log(video);
+    this.setState({selectedVideo: video});
   }
 
   render() {
     return (
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit}/>
+        <VideoDetail selectedVideo={this.state.selectedVideo}/> 
         <VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect}/>
       </div>
     );
