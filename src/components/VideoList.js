@@ -5,11 +5,15 @@ import VideoItem from './VideoItem';
 const VideoList = ({ videos }) => {
 
   const renderedList = videos.map(video => {
-    return <VideoItem />;
+    return (
+      <VideoItem video={video} key={video.id.videoId}/>
+    );
   });
 
   return (
-    <div>{renderedList}</div>
+    <div className="ui list">
+      {renderedList}
+    </div>
   );
 }
 

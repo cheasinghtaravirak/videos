@@ -9,6 +9,7 @@ class App extends React.Component {
   state = {
     videos: [],
   }
+
   //make an api request. thus, use async/await system
   onSearchSubmit = async term => {
     const response = await youtube.get('/search', {
@@ -23,7 +24,7 @@ class App extends React.Component {
     return (
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit}/>
-        <VideoList videos={this.state.videos}/> 
+        <VideoList videos={this.state.videos}/>
       </div>
     );
   }
