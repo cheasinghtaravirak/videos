@@ -8,8 +8,10 @@ class App extends React.Component {
 
   state = {
     videos: [],
+    selectedVideo: null
   }
 
+  //methods
   //make an api request. thus, use async/await system
   onSearchSubmit = async term => {
     const response = await youtube.get('/search', {
@@ -19,12 +21,15 @@ class App extends React.Component {
     });
     this.setState({videos: response.data.items});
   }
+  onVideoSelect = video => {
+    console.log(video);
+  }
 
   render() {
     return (
       <div className="ui container">
         <SearchBar onSubmit={this.onSearchSubmit}/>
-        <VideoList videos={this.state.videos}/>
+        <VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect}/>
       </div>
     );
   }
