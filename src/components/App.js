@@ -11,7 +11,10 @@ class App extends React.Component {
     videos: [],
     selectedVideo: null
   }
-
+  //lifecycle method
+  componentDidMount() {
+    this.onSearchSubmit('tiger'); 
+  }
   //methods
   //make an api request. thus, use async/await system
   onSearchSubmit = async term => {
@@ -20,7 +23,10 @@ class App extends React.Component {
         q: term,
       }
     });
-    this.setState({videos: response.data.items});
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0]
+    });
   }
   onVideoSelect = video => {
     this.setState({selectedVideo: video});
